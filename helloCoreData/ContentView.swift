@@ -8,14 +8,56 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    let coreDM: CoreDataManager
+    
+    @State private var movieTitle: String = ""
+    
+    @State private var movies: [Movie] = [Movie]()
+    
+    private func populateMovies() {
+        movies = coreDM.getAllMovies()
+    }
+    
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        NavigationView {
+            VStack {
+                TextField("Enter movie title : ", text: $movieTitle)
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                Button("Save") {
+                    coreDM.saveMovie(title: movieTitle)
+                    populateMovies()
+                }
+                
+                
+                List {
+                    ForEach(movies, id: \.self) { movie in
+                        Text(movie.title ?? "")
+                        
+                    }.onDelete(perform: { indexSet in
+                        indexSet.forEach { index in
+                            let movie = movies[index]
+                            // delete it using CoreDataManager
+                            coreDM.deleteMovie(movie: movie)
+                            populateMovies()
+                        }
+                    })
+                }
+                
+                
+                Spacer()
+            }.padding()
+            .navigationTitle("Movie")
+            
+            .onAppear(perform: {
+               populateMovies()
+            })
+        }
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        ContentView(coreDM: CoreDataManager())
     }
 }

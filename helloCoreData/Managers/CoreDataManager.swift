@@ -29,4 +29,45 @@ class CoreDataManager {
     
     
     
+    func getAllMovies() -> [Movie] {
+        
+        let fetchRequest: NSFetchRequest<Movie> = Movie.fetchRequest()
+        
+        do {
+            return try persistentContainer.viewContext.fetch(fetchRequest)
+        } catch {
+            return []
+        }
+    }
+    
+    
+    
+    func deleteMovie(movie: Movie) {
+        
+        persistentContainer.viewContext.delete(movie)
+        
+        do {
+            try persistentContainer.viewContext.save()
+        } catch {
+            persistentContainer.viewContext.rollback()
+            print("Failed to save context \(error)")
+        }
+    }
+    
+    
+    
+    func saveMovie(title: String) {
+        
+        let movie = Movie(context: persistentContainer.viewContext) // viewContext accessing the context available in the main thread
+        movie.title = title
+        
+        do {
+            try persistentContainer.viewContext.save()
+        } catch {
+            print("Faile to save movie \(error)")
+        }
+
+
+    }
+    
 }
