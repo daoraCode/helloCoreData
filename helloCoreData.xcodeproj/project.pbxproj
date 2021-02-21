@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C33B7CD325E27BBB00A085BF /* MovieDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33B7CD225E27BBB00A085BF /* MovieDetail.swift */; };
 		C34CF39925E176F60000DDA3 /* HelloCoreDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C34CF39725E176F60000DDA3 /* HelloCoreDataModel.xcdatamodeld */; };
 		C34CF39D25E179320000DDA3 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34CF39C25E179320000DDA3 /* CoreDataManager.swift */; };
 		C3E4BA3625E1736C00322CFC /* helloCoreDataApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E4BA3525E1736C00322CFC /* helloCoreDataApp.swift */; };
@@ -16,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C33B7CD225E27BBB00A085BF /* MovieDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetail.swift; sourceTree = "<group>"; };
 		C34CF39825E176F60000DDA3 /* HelloCoreDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = HelloCoreDataModel.xcdatamodel; sourceTree = "<group>"; };
 		C34CF39C25E179320000DDA3 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		C3E4BA3225E1736C00322CFC /* helloCoreData.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = helloCoreData.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -66,6 +68,7 @@
 			children = (
 				C34CF39B25E178F90000DDA3 /* Managers */,
 				C3E4BA3525E1736C00322CFC /* helloCoreDataApp.swift */,
+				C33B7CD225E27BBB00A085BF /* MovieDetail.swift */,
 				C3E4BA3725E1736C00322CFC /* ContentView.swift */,
 				C3E4BA3925E1736D00322CFC /* Assets.xcassets */,
 				C3E4BA3E25E1736D00322CFC /* Info.plist */,
@@ -154,6 +157,7 @@
 			files = (
 				C34CF39925E176F60000DDA3 /* HelloCoreDataModel.xcdatamodeld in Sources */,
 				C3E4BA3825E1736C00322CFC /* ContentView.swift in Sources */,
+				C33B7CD325E27BBB00A085BF /* MovieDetail.swift in Sources */,
 				C34CF39D25E179320000DDA3 /* CoreDataManager.swift in Sources */,
 				C3E4BA3625E1736C00322CFC /* helloCoreDataApp.swift in Sources */,
 			);

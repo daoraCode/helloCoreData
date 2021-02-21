@@ -15,6 +15,9 @@ struct ContentView: View {
     
     @State private var movies: [Movie] = [Movie]()
     
+    // Refreshing the views
+    @State private var needsRefresh: Bool = false
+    
     private func populateMovies() {
         movies = coreDM.getAllMovies()
     }
@@ -22,7 +25,7 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             VStack {
-                TextField("Enter movie title : ", text: $movieTitle)
+                TextField("Enter title : ", text: $movieTitle)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                 Button("Save") {
                     coreDM.saveMovie(title: movieTitle)
@@ -32,17 +35,24 @@ struct ContentView: View {
                 
                 List {
                     ForEach(movies, id: \.self) { movie in
-                        Text(movie.title ?? "")
+                        NavigationLink(
+                            destination: MovieDetail(movie: movie, coreDM: coreDM, needsRefresh: $needsRefresh),
+                            label: {
+                                Text(movie.title ?? "")
+                            })
                         
                     }.onDelete(perform: { indexSet in
                         indexSet.forEach { index in
                             let movie = movies[index]
+                            
                             // delete it using CoreDataManager
                             coreDM.deleteMovie(movie: movie)
                             populateMovies()
                         }
                     })
                 }
+                .listStyle(PlainListStyle())
+                .accentColor(needsRefresh ? .white : .black)
                 
                 
                 Spacer()
@@ -50,7 +60,7 @@ struct ContentView: View {
             .navigationTitle("Movie")
             
             .onAppear(perform: {
-               populateMovies()
+                populateMovies()
             })
         }
     }

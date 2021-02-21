@@ -41,6 +41,32 @@ class CoreDataManager {
     }
     
     
+
+    
+    func saveMovie(title: String) {
+        // viewContext accessing the context available in the main thread
+        let movie = Movie(context: persistentContainer.viewContext)
+        movie.title = title
+        
+        do {
+            try persistentContainer.viewContext.save()
+        } catch {
+            print("Faile to save movie \(error)")
+        }
+
+
+    }
+    
+    func updateMovie() {
+        
+        do {
+            try persistentContainer.viewContext.save()
+        } catch {
+            persistentContainer.viewContext.rollback()
+        }
+        
+    }
+    
     
     func deleteMovie(movie: Movie) {
         
@@ -52,22 +78,6 @@ class CoreDataManager {
             persistentContainer.viewContext.rollback()
             print("Failed to save context \(error)")
         }
-    }
-    
-    
-    
-    func saveMovie(title: String) {
-        
-        let movie = Movie(context: persistentContainer.viewContext) // viewContext accessing the context available in the main thread
-        movie.title = title
-        
-        do {
-            try persistentContainer.viewContext.save()
-        } catch {
-            print("Faile to save movie \(error)")
-        }
-
-
     }
     
 }
